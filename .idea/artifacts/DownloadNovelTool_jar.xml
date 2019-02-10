@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DownloadNovelTool:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DownloadNovelTool_jar</output-path>
+    <root id="archive" name="DownloadNovelTool.jar">
+      <element id="module-output" name="DownloadNovelTool" />
+      <element id="extracted-dir" path="Q:/下载/火狐下载/jsoup-1.11.3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
