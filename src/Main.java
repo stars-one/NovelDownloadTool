@@ -23,42 +23,17 @@ class Main {
 	private static String content;
 
 	public static void main(String[] args) {
-		/*Document document = null;
-		try {
-			document = Jsoup.connect("https://www.23qb.net/book/768/#newlist").get();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Element element = document.getElementById("chapterList");
-		Elements elements = element.select("li").select("a");
-		String firstChapterUrl = elements.get(0).attr("href");
-		try {
-			document = Jsoup.connect("https://www.23qb.net" + firstChapterUrl).get();
-			element = document.getElementById("mlfy_main_text");
-			String title =element.select("h1").text();
-			System.out.println(title);
-			Element element1 = document.getElementById("TextContent");
-			String text =Jsoup.clean(element1.html(), "", Whitelist.none(), new Document.OutputSettings().prettyPrint(false));//保存p标签换行
-			System.out.println(deleteCRLFOnce(text));
-			elements = document.getElementsByClass("mlfy_page").select("a");
-			for (int i = 0; i < elements.size(); i++) {
-				if (elements.get(i).attr("href").endsWith("html")) {
-					System.out.println(elements.get(i).attr("href"));
-					break;
-				}
-
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+		
 
 		try {
 			System.out.println("输入保存路径：");
 			Scanner scanner = new Scanner(System.in);
 			String path = scanner.nextLine();
 			File file = new File(path, "\\" + getBookName() + ".txt");
+			System.out.println("请输入小说网址：");
+			String url = scanner.nextLine();
 			System.out.println("下载中，请稍后...");
-			String firstUrl = getStartChapter();
+			String firstUrl = getStartChapter(url);
 			String[] s = getContent(firstUrl);
 			title = s[0];
 			content = s[1];
@@ -131,8 +106,8 @@ class Main {
 	 * 获得第一个章节
 	 * @return
 	 */
-	private static String getStartChapter()  throws IOException{
-		Document document =  Jsoup.connect("https://www.23qb.net/book/768/#newlist").get();
+	private static String getStartChapter(String url)  throws IOException{
+		Document document =  Jsoup.connect(url).get();
 		Element element = document.getElementById("chapterList");
 		Elements elements = element.select("li").select("a");
 		String firstChapterUrl = elements.get(0).attr("href");
