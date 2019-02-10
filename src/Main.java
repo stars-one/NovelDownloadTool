@@ -29,9 +29,10 @@ class Main {
 			System.out.println("输入保存路径：");
 			Scanner scanner = new Scanner(System.in);
 			String path = scanner.nextLine();
-			File file = new File(path, "\\" + getBookName() + ".txt");
+
 			System.out.println("请输入小说网址：");
 			String url = scanner.nextLine();
+			File file = new File(path, "\\" + getBookName(url) + ".txt");
 			System.out.println("下载中，请稍后...");
 			String firstUrl = getStartChapter(url);
 			String[] s = getContent(firstUrl);
@@ -114,8 +115,8 @@ class Main {
 		return firstChapterUrl;
 	}
 
-	private static String getBookName() throws IOException {
-		Document document =  Jsoup.connect("https://www.23qb.net/book/768/#newlist").get();
+	private static String getBookName(String url) throws IOException {
+		Document document =  Jsoup.connect(url).get();
 		Elements elements = document.getElementsByClass("d_title").select("h1");
 		String bookName = null;
 		for (int i = 0; i < elements.size(); i++) {
